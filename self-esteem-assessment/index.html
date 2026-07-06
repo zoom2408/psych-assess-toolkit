@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Self-Esteem Check-In — Rosenberg Self-Esteem Scale (RSES)</title>
+  <meta name="description" content="A quick, well-established 10-item self-esteem check-in based on the public-domain Rosenberg Self-Esteem Scale (1965)." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .breadcrumb-bar {
+      background: #fffbeb;
+      border-bottom: 1px solid #f3e3cf;
+      padding: 8px 24px;
+      font-size: 0.85rem;
+    }
+    .breadcrumb-bar a {
+      color: #d97706;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .breadcrumb-bar a:hover { text-decoration: underline; }
+    .breadcrumb-bar .sep { color: #8a8172; margin: 0 6px; }
+  </style>
+</head>
+<body>
+  <nav class="breadcrumb-bar no-print" aria-label="Breadcrumb">
+    <a href="../index.html" data-en="Psychology Assessments Hub" data-vi="Trang Chủ Đánh Giá Tâm Lý">🧭 Psychology Assessments Hub</a>
+    <span class="sep">/</span>
+    <span data-en="Self-Esteem Check-In" data-vi="Kiểm Tra Lòng Tự Trọng">Self-Esteem Check-In</span>
+  </nav>
+  <header class="site-header no-print">
+    <div class="site-header-inner">
+      <span class="logo">🌻 Self-Esteem Check-In</span>
+      <div id="langToggle" class="lang-toggle"></div>
+    </div>
+  </header>
+
+  <main id="app" class="app-container"></main>
+
+  <footer class="site-footer no-print">
+    <p data-en="For self-reflection and educational purposes. Not a clinical or diagnostic instrument. If low self-worth feels persistent or distressing, please reach out to a healthcare professional." data-vi="Chỉ nhằm mục đích tự chiêm nghiệm và giáo dục. Đây không phải là công cụ chẩn đoán lâm sàng. Nếu cảm giác thiếu giá trị bản thân kéo dài hoặc gây khó chịu, vui lòng liên hệ chuyên gia y tế.">For self-reflection and educational purposes. Not a clinical or diagnostic instrument. If low self-worth feels persistent or distressing, please reach out to a healthcare professional.</p>
+  </footer>
+
+  <!-- PDF export libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Language / i18n (must load before data files & app.js/feedback.js) -->
+  <script src="../shared/i18n.js"></script>
+
+  <!-- Data -->
+  <script src="js/data-rses.js"></script>
+
+  <!-- Excel export library (for feedback .xlsx export) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <!-- Logic -->
+  <script src="js/scoring.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Feedback (FAB on results screen; CSV/Excel collection) -->
+  <script>
+    window.FEEDBACK_CONFIG = {
+      appId: "self-esteem-checkin",
+      appName: "Self-Esteem Check-In",
+      // Paste your Google Apps Script Web App URL here to collect responses
+      // live in your private Google Sheet (see feedback-backend/SETUP.md):
+      endpoint: "",
+    };
+  </script>
+  <script src="js/feedback.js"></script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Psychology Assessments — Hub</title>
+<meta name="description" content="A hub linking to all self-assessment tools: stress & resilience, career & personality insights, and more to come." />
+<style>
+  :root {
+    --grad-1: #6366f1;
+    --grad-2: #8b5cf6;
+    --grad-3: #ec4899;
+    --ink: #1f2333;
+    --ink-soft: #5b5f74;
+    --bg: #f7f7fb;
+    --card-bg: #ffffff;
+    --border: #e6e4f2;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --shadow: 0 10px 30px rgba(99, 102, 241, 0.10);
+    --shadow-hover: 0 16px 40px rgba(99, 102, 241, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #f7f7fb 0%, #f2f0fb 50%, #fdf2f8 100%);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  .site-header {
+    padding: 40px 24px 32px;
+    text-align: center;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2) 60%, var(--grad-3));
+    color: #fff;
+  }
+  .site-header h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+    letter-spacing: -0.02px;
+  }
+  .site-header p {
+    margin: 0 auto;
+    max-width: 560px;
+    opacity: 0.92;
+    line-height: 1.5;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+  .card .emoji {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+  }
+  .card p {
+    margin: 0 0 16px;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  .card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #f2f0fb;
+    color: var(--grad-1);
+  }
+  .card .cta {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--grad-1);
+  }
+  .card.coming-soon {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .card.coming-soon:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+  .about {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 30px;
+    box-shadow: var(--shadow);
+  }
+  .about h2 {
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+  .about p {
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  .site-footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+  }
+  .resources {
+    margin-bottom: 44px;
+  }
+  .disclosure {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    background: #f2f0fb;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .resource-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .resource-card h4 {
+    margin: 0 0 6px;
+    font-size: 0.98rem;
+  }
+  .resource-card p {
+    margin: 0 0 10px;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  .resource-card .cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--grad-1);
+  }
+  .resource-card .sponsored-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: #eee;
+    border-radius: 999px;
+    padding: 2px 8px;
+    margin-bottom: 8px;
+    width: fit-content;
+  }
+  .site-header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .lang-toggle {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .lang-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .lang-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+  .lang-btn.active {
+    background: #fff;
+    color: var(--grad-1);
+    border-color: #fff;
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div id="langToggle" class="lang-toggle"></div>
+    </div>
+    <h1 data-en="🧭 Psychology Assessments Hub" data-vi="🧭 Trang Chủ Đánh Giá Tâm Lý">🧭 Psychology Assessments Hub</h1>
+    <p data-en="A collection of self-guided assessments to help you understand your stress, personality, and wellbeing — all in one place." data-vi="Bộ sưu tập các bài đánh giá tự thực hiện giúp bạn hiểu về căng thẳng, tính cách, và sức khỏe tinh thần của mình — tất cả ở một nơi.">A collection of self-guided assessments to help you understand your stress, personality, and wellbeing — all in one place.</p>
+  </header>
+
+  <main class="container">
+
+    <div>
+      <div class="section-title" data-en="Available Assessments" data-vi="Các Bài Đánh Giá Hiện Có">Available Assessments</div>
+      <div class="grid">
+
+        <a class="card" href="stress-assessment/index.html">
+          <div class="emoji">🌿</div>
+          <h3 data-en="Stress &amp; Resilience Check-In" data-vi="Kiểm Tra Căng Thẳng &amp; Sức Bền">Stress &amp; Resilience Check-In</h3>
+          <p data-en="Explore your perceived stress level, coping style, demand-control-support strain, and PERMA wellbeing buffers." data-vi="Khám phá mức độ căng thẳng cảm nhận, phong cách ứng phó, mức độ căng thẳng theo mô hình đòi hỏi-kiểm soát-hỗ trợ, và các vùng đệm hạnh phúc PERMA của bạn.">Explore your perceived stress level, coping style, demand-control-support strain, and PERMA wellbeing buffers.</p>
+          <div class="tags">
+            <span class="tag">PSS</span>
+            <span class="tag" data-en="Coping" data-vi="Ứng Phó">Coping</span>
+            <span class="tag" data-en="Demand-Control-Support" data-vi="Đòi Hỏi-Kiểm Soát-Hỗ Trợ">Demand-Control-Support</span>
+            <span class="tag">PERMA</span>
+          </div>
+          <span class="cta" data-en="Start assessment →" data-vi="Bắt đầu đánh giá →">Start assessment →</span>
+        </a>
+
+        <a class="card" href="career-personality-assessment/index.html">
+          <div class="emoji">✨</div>
+          <h3 data-en="Career &amp; Personality Insights" data-vi="Đánh Giá Sự Nghiệp &amp; Tính Cách">Career &amp; Personality Insights</h3>
+          <p data-en="Discover your personality type, behavioral style, and best-fit careers through a combined MBTI, DISC, and RIASEC assessment." data-vi="Khám phá kiểu tính cách, phong cách hành vi, và những nghề nghiệp phù hợp nhất với bạn thông qua bài đánh giá kết hợp MBTI, DISC, và RIASEC.">Discover your personality type, behavioral style, and best-fit careers through a combined MBTI, DISC, and RIASEC assessment.</p>
+          <div class="tags">
+            <span class="tag">MBTI</span>
+            <span class="tag">DISC</span>
+            <span class="tag">RIASEC</span>
+          </div>
+          <span class="cta" data-en="Start assessment →" data-vi="Bắt đầu đánh giá →">Start assessment →</span>
+        </a>
+
+        <a class="card" href="strengths-assessment/index.html">
+          <div class="emoji">🌟</div>
+          <h3 data-en="Character Strengths Profile" data-vi="Hồ Sơ Thế Mạnh Tính Cách">Character Strengths Profile</h3>
+          <p data-en="Identify your signature strengths across all 24 character strengths and 6 virtues — and learn how to use what's best in you, more." data-vi="Xác định các thế mạnh đặc trưng của bạn trong đủ 24 thế mạnh tính cách và 6 nhóm phẩm chất — và học cách phát huy nhiều hơn những điều tốt nhất ở bạn.">Identify your signature strengths across all 24 character strengths and 6 virtues — and learn how to use what's best in you, more.</p>
+          <div class="tags">
+            <span class="tag" data-en="24 Strengths" data-vi="24 Thế Mạnh">24 Strengths</span>
+            <span class="tag" data-en="6 Virtues" data-vi="6 Nhóm Phẩm Chất">6 Virtues</span>
+            <span class="tag" data-en="Signature Strengths" data-vi="Thế Mạnh Đặc Trưng">Signature Strengths</span>
+          </div>
+          <span class="cta" data-en="Start assessment →" data-vi="Bắt đầu đánh giá →">Start assessment →</span>
+        </a>
+
+        <a class="card" href="iq-test/index.html">
+          <div class="emoji">🧠</div>
+          <h3 data-en="Cognitive Abilities Challenge" data-vi="Thử Thách Năng Lực Nhận Thức">Cognitive Abilities Challenge</h3>
+          <p data-en="An IQ-style challenge across verbal, numerical, logical, spatial, and memory domains — interpreted for your age and education, with explanations for every missed question." data-vi="Thử thách kiểu trắc nghiệm IQ trên các lĩnh vực ngôn ngữ, số học, logic, không gian, và trí nhớ — được diễn giải theo độ tuổi và học vấn của bạn, kèm lời giải cho mọi câu làm sai.">An IQ-style challenge across verbal, numerical, logical, spatial, and memory domains — interpreted for your age and education, with explanations for every missed question.</p>
+          <div class="tags">
+            <span class="tag" data-en="5 Domains" data-vi="5 Lĩnh Vực">5 Domains</span>
+            <span class="tag" data-en="Right/Wrong Items" data-vi="Câu Hỏi Đúng/Sai">Right/Wrong Items</span>
+            <span class="tag" data-en="Age &amp; Education Adjusted" data-vi="Điều Chỉnh Theo Tuổi &amp; Học Vấn">Age &amp; Education Adjusted</span>
+          </div>
+          <span class="cta" data-en="Start challenge →" data-vi="Bắt đầu thử thách →">Start challenge →</span>
+        </a>
+
+        <a class="card" href="attachment-style-assessment/index.html">
+          <div class="emoji">💞</div>
+          <h3 data-en="Attachment Style Assessment" data-vi="Đánh Giá Kiểu Gắn Bó">Attachment Style Assessment</h3>
+          <p data-en="Explore your adult attachment pattern across Anxiety and Avoidance — inspired by the ECR-R research instrument — and see how they combine into a Secure, Anxious-Preoccupied, Dismissive-Avoidant, or Fearful-Avoidant pattern." data-vi="Khám phá mô hình gắn bó ở người trưởng thành của bạn qua hai khía cạnh Lo Âu và Né Tránh — lấy cảm hứng từ công cụ nghiên cứu ECR-R — và xem chúng kết hợp thành mô hình An Toàn, Lo Âu-Bận Tâm, Né Tránh-Xa Cách, hoặc Lo Âu-Né Tránh như thế nào.">Explore your adult attachment pattern across Anxiety and Avoidance — inspired by the ECR-R research instrument — and see how they combine into a Secure, Anxious-Preoccupied, Dismissive-Avoidant, or Fearful-Avoidant pattern.</p>
+          <div class="tags">
+            <span class="tag" data-en="Anxiety" data-vi="Lo Âu">Anxiety</span>
+            <span class="tag" data-en="Avoidance" data-vi="Né Tránh">Avoidance</span>
+            <span class="tag" data-en="Attachment Style" data-vi="Kiểu Gắn Bó">Attachment Style</span>
+          </div>
+          <span class="cta" data-en="Start assessment →" data-vi="Bắt đầu đánh giá →">Start assessment →</span>
+        </a>
+
+        <a class="card" href="wellbeing-checkin/index.html">
+          <div class="emoji">💜</div>
+          <h3 data-en="Wellbeing &amp; Mood Check-In" data-vi="Kiểm Tra Tâm Trạng &amp; Sức Khỏe Tinh Thần">Wellbeing &amp; Mood Check-In</h3>
+          <p data-en="The standard PHQ-9 and GAD-7 screeners, exactly as used in clinics — with clinical cutoffs, plain-language guidance, and support resources. Screening only, not a diagnosis." data-vi="Bộ sàng lọc tiêu chuẩn PHQ-9 và GAD-7, đúng như trong phòng khám — kèm ngưỡng lâm sàng, hướng dẫn dễ hiểu, và các nguồn hỗ trợ. Chỉ mang tính sàng lọc, không phải chẩn đoán.">The standard PHQ-9 and GAD-7 screeners, exactly as used in clinics — with clinical cutoffs, plain-language guidance, and support resources. Screening only, not a diagnosis.</p>
+          <div class="tags">
+            <span class="tag">PHQ-9</span>
+            <span class="tag">GAD-7</span>
+            <span class="tag" data-en="~5 Minutes" data-vi="~5 Phút">~5 Minutes</span>
+          </div>
+          <span class="cta" data-en="Start check-in →" data-vi="Bắt đầu kiểm tra →">Start check-in →</span>
+        </a>
+
+        <a class="card" href="self-esteem-assessment/index.html">
+          <div class="emoji">🌻</div>
+          <h3 data-en="Self-Esteem Check-In" data-vi="Kiểm Tra Lòng Tự Trọng">Self-Esteem Check-In</h3>
+          <p data-en="A quick, well-established 10-item check on how you currently feel about your own worth, based on the Rosenberg Self-Esteem Scale." data-vi="Bài kiểm tra ngắn gồm 10 câu hỏi đã được kiểm chứng, đánh giá cảm nhận hiện tại của bạn về giá trị bản thân, dựa trên Thang Đo Lòng Tự Trọng Rosenberg.">A quick, well-established 10-item check on how you currently feel about your own worth, based on the Rosenberg Self-Esteem Scale.</p>
+          <div class="tags">
+            <span class="tag">RSES</span>
+            <span class="tag" data-en="10 Items" data-vi="10 Câu Hỏi">10 Items</span>
+            <span class="tag" data-en="~2 Minutes" data-vi="~2 Phút">~2 Minutes</span>
+          </div>
+          <span class="cta" data-en="Start check-in →" data-vi="Bắt đầu kiểm tra →">Start check-in →</span>
+        </a>
+
+        <a class="card" href="adhd-screener/index.html">
+          <div class="emoji">🎯</div>
+          <h3 data-en="ADHD Self-Screener" data-vi="Công Cụ Tự Sàng Lọc ADHD">ADHD Self-Screener</h3>
+          <p data-en="The real, unmodified WHO Adult ADHD Self-Report Scale (ASRS v1.1), plus extra questions on school, work, home life, and childhood history. Screening only — not a diagnosis." data-vi="Thang Tự Đánh Giá ADHD Người Lớn của WHO (ASRS v1.1), nguyên bản không chỉnh sửa, kèm các câu hỏi bổ sung về trường học, công việc, đời sống gia đình, và lịch sử thời thơ ấu. Chỉ mang tính sàng lọc — không phải chẩn đoán.">The real, unmodified WHO Adult ADHD Self-Report Scale (ASRS v1.1), plus extra questions on school, work, home life, and childhood history. Screening only — not a diagnosis.</p>
+          <div class="tags">
+            <span class="tag">ASRS v1.1</span>
+            <span class="tag" data-en="All Ages" data-vi="Mọi Độ Tuổi">All Ages</span>
+            <span class="tag" data-en="~10 Minutes" data-vi="~10 Phút">~10 Minutes</span>
+          </div>
+          <span class="cta" data-en="Start screener →" data-vi="Bắt đầu sàng lọc →">Start screener →</span>
+        </a>
+
+        <div class="card coming-soon">
+          <div class="emoji">🌙</div>
+          <h3 data-en="More assessments coming soon" data-vi="Thêm các bài đánh giá sắp ra mắt">More assessments coming soon</h3>
+          <p data-en="Additional tools (e.g. sleep quality, emotional intelligence) may be added here over time." data-vi="Các công cụ bổ sung (ví dụ: chất lượng giấc ngủ, trí tuệ cảm xúc) có thể sẽ được thêm vào đây theo thời gian.">Additional tools (e.g. sleep quality, emotional intelligence) may be added here over time.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="resources">
+      <div class="section-title" data-en="Recommended Resources" data-vi="Tài Nguyên Gợi Ý">Recommended Resources</div>
+      <div class="disclosure" data-en="Some links below are affiliate/referral links. If you sign up or make a purchase through them, this site may earn a commission at no extra cost to you. We only link to resources related to the topics covered here." data-vi="Một số liên kết bên dưới là liên kết liên kết/giới thiệu. Nếu bạn đăng ký hoặc mua hàng qua các liên kết này, trang web có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ liên kết đến các tài nguyên liên quan đến các chủ đề được đề cập ở đây.">Some links below are affiliate/referral links. If you sign up or make a purchase through them, this site may earn a commission at no extra cost to you. We only link to resources related to the topics covered here.</div>
+      <div id="resourceGrid" class="resource-grid"></div>
+    </div>
+
+    <div class="about">
+      <h2 data-en="About this hub" data-vi="Về trang này">About this hub</h2>
+      <p data-en="Each assessment on this page is a standalone, self-contained tool built for reflection and personal insight. They combine well-known psychological frameworks into a single guided experience with a results summary you can review or export. None of these tools are clinical or diagnostic instruments — they're meant for self-discovery and educational purposes only. If you're struggling with stress, mental health, or wellbeing, please reach out to a qualified healthcare professional." data-vi="Mỗi bài đánh giá trên trang này là một công cụ độc lập, được xây dựng riêng để phục vụ việc chiêm nghiệm và hiểu biết bản thân. Chúng kết hợp các khung lý thuyết tâm lý học nổi tiếng thành một trải nghiệm hướng dẫn duy nhất kèm bản tóm tắt kết quả mà bạn có thể xem lại hoặc xuất ra. Không có công cụ nào trong số này là công cụ chẩn đoán hay lâm sàng — chúng chỉ nhằm mục đích tự khám phá bản thân và giáo dục. Nếu bạn đang gặp khó khăn với căng thẳng, sức khỏe tâm thần, hoặc đời sống tinh thần, vui lòng liên hệ với một chuyên gia y tế có trình độ.">
+        Each assessment on this page is a standalone, self-contained tool built for reflection and
+        personal insight. They combine well-known psychological frameworks into a single guided
+        experience with a results summary you can review or export. None of these tools are
+        clinical or diagnostic instruments — they're meant for self-discovery and educational
+        purposes only. If you're struggling with stress, mental health, or wellbeing, please reach
+        out to a qualified healthcare professional.
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p data-en="Psychology Assessments · For self-reflection and educational purposes only." data-vi="Đánh Giá Tâm Lý · Chỉ nhằm mục đích tự chiêm nghiệm và giáo dục.">Psychology Assessments · For self-reflection and educational purposes only.</p>
+  </footer>
+
+  <!-- Language / i18n -->
+  <script src="shared/i18n.js"></script>
+  <!-- Affiliate link config (edit shared/affiliate-config.js to add real IDs) -->
+  <script src="shared/affiliate-config.js"></script>
+  <script>
+    (function renderResources() {
+      const grid = document.getElementById("resourceGrid");
+      if (!grid || typeof AFFILIATE_LINKS === "undefined") return;
+      grid.innerHTML = Object.values(AFFILIATE_LINKS)
+        .map(
+          (r) => `
+        <a class="resource-card" href="${r.url}" target="_blank" rel="sponsored noopener">
+          <span class="sponsored-tag">Sponsored</span>
+          <h4 data-en="${r.label.en}" data-vi="${r.label.vi}">${r.label.en}</h4>
+          <p data-en="${r.blurb.en}" data-vi="${r.blurb.vi}">${r.blurb.en}</p>
+          <span class="cta" data-en="Learn more →" data-vi="Tìm hiểu thêm →">Learn more →</span>
+        </a>`
+        )
+        .join("");
+      applyStaticTranslations();
+    })();
+  </script>
+
+</body>
+</html>

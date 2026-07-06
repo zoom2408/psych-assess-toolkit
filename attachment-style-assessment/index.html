@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attachment Style Assessment — Anxiety & Avoidance (ECR-R inspired)</title>
+  <meta name="description" content="A free self-reflection tool exploring your adult attachment style across the Anxiety and Avoidance dimensions, inspired by the ECR-R research instrument. Not a clinical or diagnostic assessment." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .breadcrumb-bar {
+      background: #fdf2f8;
+      border-bottom: 1px solid #f5d0e4;
+      padding: 8px 24px;
+      font-size: 0.85rem;
+    }
+    .breadcrumb-bar a {
+      color: #be185d;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .breadcrumb-bar a:hover { text-decoration: underline; }
+    .breadcrumb-bar .sep { color: #8a94a8; margin: 0 6px; }
+  </style>
+</head>
+<body>
+  <nav class="breadcrumb-bar no-print" aria-label="Breadcrumb">
+    <a href="../index.html" data-en="Psychology Assessments Hub" data-vi="Trang Chủ Đánh Giá Tâm Lý">🧭 Psychology Assessments Hub</a>
+    <span class="sep">/</span>
+    <span data-en="Attachment Style Assessment" data-vi="Đánh Giá Kiểu Gắn Bó">Attachment Style Assessment</span>
+  </nav>
+  <header class="site-header no-print">
+    <div class="site-header-inner">
+      <span class="logo">💞 Attachment Style Assessment</span>
+      <div id="langToggle" class="lang-toggle"></div>
+    </div>
+  </header>
+
+  <main id="app" class="app-container"></main>
+
+  <footer class="site-footer no-print">
+    <p data-en="For self-reflection and educational purposes only. This tool uses originally-written items inspired by (not a reproduction of) the ECR-R research instrument, and is NOT a clinical or diagnostic assessment of attachment. If attachment patterns are affecting your relationships or mental health, please talk to a licensed therapist or counselor." data-vi="Chỉ nhằm mục đích tự chiêm nghiệm và giáo dục. Công cụ này sử dụng các câu hỏi được viết mới, lấy cảm hứng từ (không sao chép) công cụ nghiên cứu ECR-R, và KHÔNG phải là đánh giá lâm sàng hay chẩn đoán về sự gắn bó. Nếu các mô hình gắn bó đang ảnh hưởng đến các mối quan hệ hoặc sức khỏe tâm thần của bạn, vui lòng trò chuyện với một nhà trị liệu hoặc chuyên gia tư vấn có chứng chỉ hành nghề.">For self-reflection and educational purposes only. This tool uses originally-written items inspired by (not a reproduction of) the ECR-R research instrument, and is NOT a clinical or diagnostic assessment of attachment. If attachment patterns are affecting your relationships or mental health, please talk to a licensed therapist or counselor.</p>
+  </footer>
+
+  <!-- PDF export libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Language / i18n (shared across the hub — must load before data & app scripts) -->
+  <script src="../shared/i18n.js"></script>
+
+  <!-- Data -->
+  <script src="js/data-items.js"></script>
+
+  <!-- Excel export library (for feedback .xlsx export) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <!-- Logic -->
+  <script src="js/scoring.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Feedback (FAB on results screen; CSV/Excel collection) -->
+  <script>
+    window.FEEDBACK_CONFIG = { appId: "attachment-style-ecrr", appName: "Attachment Style Assessment" };
+  </script>
+  <script src="js/feedback.js"></script>
+</body>
+</html>

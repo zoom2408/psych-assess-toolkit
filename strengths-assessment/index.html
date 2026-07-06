@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character Strengths Profile — 24 Strengths · 6 Virtues</title>
+  <meta name="description" content="Discover your signature character strengths. A free, private self-assessment of all 24 strengths from the VIA classification (Peterson & Seligman), with a personal report and use-your-strengths action plan." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .breadcrumb-bar {
+      background: #fffbeb;
+      border-bottom: 1px solid #f0e2c8;
+      padding: 8px 24px;
+      font-size: 0.85rem;
+    }
+    .breadcrumb-bar a {
+      color: #b45309;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .breadcrumb-bar a:hover { text-decoration: underline; }
+    .breadcrumb-bar .sep { color: #a89a80; margin: 0 6px; }
+  </style>
+</head>
+<body>
+  <nav class="breadcrumb-bar no-print" aria-label="Breadcrumb">
+    <a href="../index.html" data-en="Psychology Assessments Hub" data-vi="Trang Chủ Đánh Giá Tâm Lý">🧭 Psychology Assessments Hub</a>
+    <span class="sep">/</span>
+    <span data-en="Character Strengths Profile" data-vi="Hồ Sơ Thế Mạnh Tính Cách">Character Strengths Profile</span>
+  </nav>
+  <header class="site-header no-print">
+    <div class="site-header-inner">
+      <span class="logo">🌟 Character Strengths Profile</span>
+      <div id="langToggle" class="lang-toggle"></div>
+    </div>
+  </header>
+
+  <main id="app" class="app-container"></main>
+
+  <footer class="site-footer no-print">
+    <p data-en="For self-reflection and educational purposes. Originally-written items inspired by the published VIA classification — not the proprietary VIA-IS or CliftonStrengths instrument, and not a clinical tool." data-vi="Chỉ nhằm mục đích tự chiêm nghiệm và giáo dục. Câu hỏi được viết mới, lấy cảm hứng từ hệ thống phân loại VIA đã công bố — không phải bài trắc nghiệm VIA-IS hay CliftonStrengths chính thức, và không phải công cụ lâm sàng.">For self-reflection and educational purposes. Originally-written items inspired by the published VIA classification — not the proprietary VIA-IS or CliftonStrengths instrument, and not a clinical tool.</p>
+  </footer>
+
+  <!-- PDF export libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Language / i18n (must load before data files & app.js/feedback.js) -->
+  <script src="../shared/i18n.js"></script>
+
+  <!-- Data (profiles first: data-strengths + app.js reference VIRTUES/STRENGTH_PROFILES) -->
+  <script src="js/data-profiles.js"></script>
+  <script src="js/data-strengths.js"></script>
+
+  <!-- Excel export library (for feedback .xlsx export) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <!-- Logic -->
+  <script src="js/scoring.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Feedback (FAB on results screen; CSV/Excel collection) -->
+  <script>
+    window.FEEDBACK_CONFIG = {
+      appId: "character-strengths",
+      appName: "Character Strengths Profile",
+      // Paste your Google Apps Script Web App URL here to collect responses
+      // live in your private Google Sheet (see feedback-backend/SETUP.md):
+      endpoint: "",
+    };
+  </script>
+  <script src="js/feedback.js"></script>
+</body>
+</html>
