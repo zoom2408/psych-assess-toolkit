@@ -399,6 +399,7 @@ function goNext() {
   } else {
     state.completedAt = new Date().toISOString();
     state.screen = "results";
+    if (window.trackAssessmentEvent) window.trackAssessmentEvent("assessment_completed", "adhd-screener");
     render();
   }
 }

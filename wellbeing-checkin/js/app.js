@@ -314,6 +314,7 @@ function renderImpairment() {
       state.impairment = Number(btn.dataset.val);
       state.completedAt = new Date().toISOString();
       state.screen = "results";
+      if (window.trackAssessmentEvent) window.trackAssessmentEvent("assessment_completed", "wellbeing-checkin");
       render();
     };
   });
