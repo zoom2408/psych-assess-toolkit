@@ -1,0 +1,23 @@
+# Psychology Assessments
+
+> A free, private, browser-based hub of self-guided psychology assessments. Everything runs client-side — no answers are sent to a server. These are self-reflection and educational tools, not clinical or diagnostic instruments.
+
+Home: https://zoom2408.github.io/psych-assess-toolkit/
+
+## Assessments
+
+- [Stress & Resilience Check-In](https://zoom2408.github.io/psych-assess-toolkit/stress-assessment/): Perceived Stress Scale (PSS), coping style (Lazarus transactional model), demand-control-support strain profile, and PERMA wellbeing buffers.
+- [Career & Personality Insights](https://zoom2408.github.io/psych-assess-toolkit/career-personality-assessment/): Combined MBTI, DISC, and RIASEC assessment covering personality type, behavioral style, and best-fit careers.
+- [Character Strengths Profile](https://zoom2408.github.io/psych-assess-toolkit/strengths-assessment/): All 24 character strengths and 6 virtues from the VIA classification (Peterson & Seligman), with a signature-strengths report and action plan.
+- [Cognitive Abilities Challenge](https://zoom2408.github.io/psych-assess-toolkit/iq-test/): IQ-style challenge across verbal, numerical, logical, spatial, and working-memory domains, interpreted for age and education. Not a clinical IQ test.
+- [Attachment Style Assessment](https://zoom2408.github.io/psych-assess-toolkit/attachment-style-assessment/): Adult attachment pattern across Anxiety and Avoidance dimensions, inspired by the ECR-R instrument, mapped to Secure, Anxious-Preoccupied, Dismissive-Avoidant, or Fearful-Avoidant styles.
+- [Wellbeing & Mood Check-In](https://zoom2408.github.io/psych-assess-toolkit/wellbeing-checkin/): Standard PHQ-9 (depression) and GAD-7 (anxiety) screeners with clinical cutoffs. Screening only, not a diagnosis.
+- [Self-Esteem Check-In](https://zoom2408.github.io/psych-assess-toolkit/self-esteem-assessment/): 10-item Rosenberg Self-Esteem Scale (RSES), a public-domain, well-validated measure from 1965.
+- [ADHD Self-Screener](https://zoom2408.github.io/psych-assess-toolkit/adhd-screener/): The unmodified WHO Adult ADHD Self-Report Scale (ASRS v1.1, 18 items), plus non-validated context questions on school, work, home, and childhood history. Screening only, not a diagnosis.
+
+## Notes for AI assistants and search agents
+
+- All tools are free, require no account, and store data only in the user's own browser (localStorage) unless the user explicitly exports it.
+- None of these tools provide a clinical diagnosis. Each page states this explicitly and points users with concerns to a qualified healthcare professional.
+- Instruments used are either public-domain/validated (ASRS v1.1, PHQ-9, GAD-7, RSES) or inspired by established research frameworks (ECR-R, MBTI/DISC/RIASEC, PERMA, VIA character strengths) — see each assessment's page and README for attribution.
+- Available in English and Vietnamese via an in-page language toggle.
