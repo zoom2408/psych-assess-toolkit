@@ -9,12 +9,12 @@
 <meta name="robots" content="index, follow" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Psychology Assessments — Hub" />
-<meta property="og:description" content="Free, private, browser-based self-assessments for stress, personality, wellbeing, self-esteem, attachment style, cognitive ability, ADHD screening, and character strengths." />
+<meta property="og:description" content="Free, private, browser-based self-assessments for stress, personality, wellbeing, self-esteem, attachment style, cognitive ability, ADHD screening, and character strengths — plus free brain games." />
 <meta property="og:url" content="https://zoom2408.github.io/psych-assess-toolkit/" />
 <meta property="og:site_name" content="Psychology Assessments" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Psychology Assessments — Hub" />
-<meta name="twitter:description" content="Free, private, browser-based self-assessments for stress, personality, wellbeing, self-esteem, attachment style, cognitive ability, ADHD screening, and character strengths." />
+<meta name="twitter:description" content="Free, private, browser-based self-assessments for stress, personality, wellbeing, self-esteem, attachment style, cognitive ability, ADHD screening, and character strengths — plus free brain games." />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -36,7 +36,8 @@
         { "@type": "ListItem", "position": 5, "name": "Attachment Style Assessment", "url": "https://zoom2408.github.io/psych-assess-toolkit/attachment-style-assessment/" },
         { "@type": "ListItem", "position": 6, "name": "Wellbeing & Mood Check-In", "url": "https://zoom2408.github.io/psych-assess-toolkit/wellbeing-checkin/" },
         { "@type": "ListItem", "position": 7, "name": "Self-Esteem Check-In", "url": "https://zoom2408.github.io/psych-assess-toolkit/self-esteem-assessment/" },
-        { "@type": "ListItem", "position": 8, "name": "ADHD Self-Screener", "url": "https://zoom2408.github.io/psych-assess-toolkit/adhd-screener/" }
+        { "@type": "ListItem", "position": 8, "name": "ADHD Self-Screener", "url": "https://zoom2408.github.io/psych-assess-toolkit/adhd-screener/" },
+        { "@type": "ListItem", "position": 9, "name": "Brain Games", "url": "https://zoom2408.github.io/psych-assess-toolkit/brain-games/" }
       ]
     }
   ]
@@ -268,6 +269,42 @@
     color: var(--grad-1);
     border-color: #fff;
   }
+  .segmented-control {
+    display: flex;
+    gap: 4px;
+    max-width: 360px;
+    margin: 0 auto 32px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow: var(--shadow);
+  }
+  .segment-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .segment-btn:hover {
+    color: var(--ink);
+  }
+  .segment-btn.active {
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2) 60%, var(--grad-3));
+    color: #fff;
+  }
+  .view-panel {
+    display: none;
+  }
+  .view-panel.active {
+    display: block;
+  }
 </style>
 </head>
 <body>
@@ -282,7 +319,12 @@
 
   <main class="container">
 
-    <div>
+    <div class="segmented-control" id="viewSwitcher">
+      <button class="segment-btn" data-view="assessments" data-en="Assessments" data-vi="Đánh Giá">Assessments</button>
+      <button class="segment-btn" data-view="games" data-en="Games" data-vi="Trò Chơi">Games</button>
+    </div>
+
+    <div id="assessmentsPanel" class="view-panel">
       <div class="section-title" data-en="Available Assessments" data-vi="Các Bài Đánh Giá Hiện Có">Available Assessments</div>
       <div class="grid">
 
@@ -390,24 +432,50 @@
         </div>
 
       </div>
+
+      <div class="resources">
+        <div class="section-title" data-en="Recommended Resources" data-vi="Tài Nguyên Gợi Ý">Recommended Resources</div>
+        <div class="disclosure" data-en="Some links below are affiliate/referral links. If you sign up or make a purchase through them, this site may earn a commission at no extra cost to you. We only link to resources related to the topics covered here." data-vi="Một số liên kết bên dưới là liên kết liên kết/giới thiệu. Nếu bạn đăng ký hoặc mua hàng qua các liên kết này, trang web có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ liên kết đến các tài nguyên liên quan đến các chủ đề được đề cập ở đây.">Some links below are affiliate/referral links. If you sign up or make a purchase through them, this site may earn a commission at no extra cost to you. We only link to resources related to the topics covered here.</div>
+        <div id="resourceGrid" class="resource-grid"></div>
+      </div>
+
+      <div class="about">
+        <h2 data-en="About this hub" data-vi="Về trang này">About this hub</h2>
+        <p data-en="Each assessment on this page is a standalone, self-contained tool built for reflection and personal insight. They combine well-known psychological frameworks into a single guided experience with a results summary you can review or export. None of these tools are clinical or diagnostic instruments — they're meant for self-discovery and educational purposes only. If you're struggling with stress, mental health, or wellbeing, please reach out to a qualified healthcare professional." data-vi="Mỗi bài đánh giá trên trang này là một công cụ độc lập, được xây dựng riêng để phục vụ việc chiêm nghiệm và hiểu biết bản thân. Chúng kết hợp các khung lý thuyết tâm lý học nổi tiếng thành một trải nghiệm hướng dẫn duy nhất kèm bản tóm tắt kết quả mà bạn có thể xem lại hoặc xuất ra. Không có công cụ nào trong số này là công cụ chẩn đoán hay lâm sàng — chúng chỉ nhằm mục đích tự khám phá bản thân và giáo dục. Nếu bạn đang gặp khó khăn với căng thẳng, sức khỏe tâm thần, hoặc đời sống tinh thần, vui lòng liên hệ với một chuyên gia y tế có trình độ.">
+          Each assessment on this page is a standalone, self-contained tool built for reflection and
+          personal insight. They combine well-known psychological frameworks into a single guided
+          experience with a results summary you can review or export. None of these tools are
+          clinical or diagnostic instruments — they're meant for self-discovery and educational
+          purposes only. If you're struggling with stress, mental health, or wellbeing, please reach
+          out to a qualified healthcare professional.
+        </p>
+      </div>
     </div>
 
-    <div class="resources">
-      <div class="section-title" data-en="Recommended Resources" data-vi="Tài Nguyên Gợi Ý">Recommended Resources</div>
-      <div class="disclosure" data-en="Some links below are affiliate/referral links. If you sign up or make a purchase through them, this site may earn a commission at no extra cost to you. We only link to resources related to the topics covered here." data-vi="Một số liên kết bên dưới là liên kết liên kết/giới thiệu. Nếu bạn đăng ký hoặc mua hàng qua các liên kết này, trang web có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ liên kết đến các tài nguyên liên quan đến các chủ đề được đề cập ở đây.">Some links below are affiliate/referral links. If you sign up or make a purchase through them, this site may earn a commission at no extra cost to you. We only link to resources related to the topics covered here.</div>
-      <div id="resourceGrid" class="resource-grid"></div>
-    </div>
+    <div id="gamesPanel" class="view-panel">
+      <div class="section-title" data-en="Available Games" data-vi="Các Trò Chơi Hiện Có">Available Games</div>
+      <div class="grid">
 
-    <div class="about">
-      <h2 data-en="About this hub" data-vi="Về trang này">About this hub</h2>
-      <p data-en="Each assessment on this page is a standalone, self-contained tool built for reflection and personal insight. They combine well-known psychological frameworks into a single guided experience with a results summary you can review or export. None of these tools are clinical or diagnostic instruments — they're meant for self-discovery and educational purposes only. If you're struggling with stress, mental health, or wellbeing, please reach out to a qualified healthcare professional." data-vi="Mỗi bài đánh giá trên trang này là một công cụ độc lập, được xây dựng riêng để phục vụ việc chiêm nghiệm và hiểu biết bản thân. Chúng kết hợp các khung lý thuyết tâm lý học nổi tiếng thành một trải nghiệm hướng dẫn duy nhất kèm bản tóm tắt kết quả mà bạn có thể xem lại hoặc xuất ra. Không có công cụ nào trong số này là công cụ chẩn đoán hay lâm sàng — chúng chỉ nhằm mục đích tự khám phá bản thân và giáo dục. Nếu bạn đang gặp khó khăn với căng thẳng, sức khỏe tâm thần, hoặc đời sống tinh thần, vui lòng liên hệ với một chuyên gia y tế có trình độ.">
-        Each assessment on this page is a standalone, self-contained tool built for reflection and
-        personal insight. They combine well-known psychological frameworks into a single guided
-        experience with a results summary you can review or export. None of these tools are
-        clinical or diagnostic instruments — they're meant for self-discovery and educational
-        purposes only. If you're struggling with stress, mental health, or wellbeing, please reach
-        out to a qualified healthcare professional.
-      </p>
+        <a class="card" href="brain-games/index.html">
+          <div class="emoji">🕹️</div>
+          <h3 data-en="Brain Games" data-vi="Trò Chơi Trí Não">Brain Games</h3>
+          <p data-en="Take a break with a live trivia quiz, reaction time test, sudoku, and 2048 — free mini-games, no sign-up required." data-vi="Nghỉ ngơi với trò chơi đố vui trực tiếp, kiểm tra thời gian phản ứng, sudoku, và 2048 — các trò chơi nhỏ miễn phí, không cần đăng ký.">Take a break with a live trivia quiz, reaction time test, sudoku, and 2048 — free mini-games, no sign-up required.</p>
+          <div class="tags">
+            <span class="tag" data-en="Trivia" data-vi="Đố Vui">Trivia</span>
+            <span class="tag" data-en="Reaction Time" data-vi="Thời Gian Phản Ứng">Reaction Time</span>
+            <span class="tag">Sudoku</span>
+            <span class="tag">2048</span>
+          </div>
+          <span class="cta" data-en="Play now →" data-vi="Chơi ngay →">Play now →</span>
+        </a>
+
+        <div class="card coming-soon">
+          <div class="emoji">🌙</div>
+          <h3 data-en="More games coming soon" data-vi="Thêm trò chơi sắp ra mắt">More games coming soon</h3>
+          <p data-en="More free mini-games may be added here over time." data-vi="Thêm các trò chơi nhỏ miễn phí có thể sẽ được thêm vào đây theo thời gian.">More free mini-games may be added here over time.</p>
+        </div>
+
+      </div>
     </div>
 
   </main>
@@ -415,6 +483,36 @@
   <footer class="site-footer">
     <p data-en="Psychology Assessments · For self-reflection and educational purposes only." data-vi="Đánh Giá Tâm Lý · Chỉ nhằm mục đích tự chiêm nghiệm và giáo dục.">Psychology Assessments · For self-reflection and educational purposes only.</p>
   </footer>
+
+  <!-- View switcher (Assessments / Games segmented control) -->
+  <script>
+    (function initViewSwitcher() {
+      const STORAGE_KEY = "hub.activeView";
+      const switcher = document.getElementById("viewSwitcher");
+      const panels = {
+        assessments: document.getElementById("assessmentsPanel"),
+        games: document.getElementById("gamesPanel"),
+      };
+
+      function setView(view) {
+        if (!panels[view]) view = "assessments";
+        Object.keys(panels).forEach((key) => {
+          panels[key].classList.toggle("active", key === view);
+        });
+        switcher.querySelectorAll(".segment-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.view === view);
+        });
+        localStorage.setItem(STORAGE_KEY, view);
+      }
+
+      switcher.querySelectorAll(".segment-btn").forEach((btn) => {
+        btn.addEventListener("click", () => setView(btn.dataset.view));
+      });
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      setView(saved === "games" ? "games" : "assessments");
+    })();
+  </script>
 
   <!-- Language / i18n -->
   <script src="shared/i18n.js"></script>

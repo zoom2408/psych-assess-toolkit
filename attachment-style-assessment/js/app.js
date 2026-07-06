@@ -51,6 +51,35 @@ const UI = {
   versionSuffix: { en: (label) => `${label} Version`, vi: (label) => `Phiên Bản ${label}` },
   itemCountSuffix: { en: (n, t) => `${n} statements · ~${t}`, vi: (n, t) => `${n} câu · ~${t}` },
   back: { en: "Back", vi: "Quay Lại" },
+  relContextQuestion: { en: "Which best describes you right now?", vi: "Điều nào mô tả đúng nhất về bạn lúc này?" },
+  relContextSub: {
+    en: "The statements ahead say \"partner\" — this just tells us how to help you interpret them. It doesn't change how anything is scored.",
+    vi: "Các câu phía sau sẽ nhắc đến \"người ấy\" — lựa chọn này chỉ giúp chúng tôi hướng dẫn bạn cách diễn giải câu hỏi. Nó không thay đổi cách chấm điểm.",
+  },
+  relPartnered: {
+    key: "partnered",
+    label: { en: "Currently in a relationship", vi: "Hiện đang trong một mối quan hệ" },
+    blurb: { en: "Answer with your current partner in mind.", vi: "Trả lời với người ấy hiện tại trong tâm trí." },
+  },
+  relSingleHistory: {
+    key: "single",
+    label: { en: "Single, with past relationship(s)", vi: "Độc thân, đã từng có mối quan hệ" },
+    blurb: { en: "Answer based on your most recent relationship, or your general pattern across past ones.", vi: "Trả lời dựa trên mối quan hệ gần đây nhất, hoặc mô hình chung của bạn qua các mối quan hệ trước đây." },
+  },
+  relNever: {
+    key: "never",
+    label: { en: "Never been in a relationship", vi: "Chưa từng có mối quan hệ nào" },
+    blurb: { en: "Answer with how you'd expect yourself to feel — close friendships or family bonds are fine to draw on too.", vi: "Trả lời theo cách bạn nghĩ mình sẽ cảm thấy — bạn cũng có thể dựa vào tình bạn thân thiết hoặc mối quan hệ gia đình." },
+  },
+  sectionContextNote: {
+    partnered: { en: "Think of your current partner as you answer.", vi: "Hãy nghĩ đến người ấy hiện tại khi trả lời." },
+    single: { en: "Think of your most recent relationship, or your general pattern across past ones, as you answer.", vi: "Hãy nghĩ đến mối quan hệ gần đây nhất, hoặc mô hình chung của bạn, khi trả lời." },
+    never: { en: "Answer with how you'd expect yourself to feel in a close relationship — close friendships or family bonds are fine to draw on too.", vi: "Hãy trả lời theo cách bạn nghĩ mình sẽ cảm thấy trong một mối quan hệ gần gũi — bạn cũng có thể dựa vào tình bạn thân thiết hoặc gia đình." },
+  },
+  neverPartneredCaveat: {
+    en: "You told us you haven't been in a relationship yet, so these statements were answered as a projection rather than lived experience. This instrument (and the ECR-R it's inspired by) is normed on people with actual romantic-relationship experience, so treat this score as a rougher approximation of your likely pattern — not a firm read.",
+    vi: "Bạn cho biết mình chưa từng có mối quan hệ nào, nên các câu trả lời này mang tính dự đoán hơn là trải nghiệm thực tế. Công cụ này (và ECR-R mà nó lấy cảm hứng) được chuẩn hóa trên những người đã có trải nghiệm mối quan hệ tình cảm thực sự, vì vậy hãy xem điểm số này là một ước lượng gần đúng hơn về mô hình có khả năng của bạn — không phải một kết quả chắc chắn.",
+  },
   sectionOf: { en: (i, n) => `Section ${i} of ${n}`, vi: (i, n) => `Phần ${i} / ${n}` },
   sectionCovers: { en: (n) => `${n} statements. Answer honestly based on how you generally feel in close relationships, not just your current one.`, vi: (n) => `${n} câu. Hãy trả lời trung thực dựa trên cảm nhận chung của bạn trong các mối quan hệ thân thiết, không chỉ mối quan hệ hiện tại.` },
   beginSection: { en: (label) => `Begin ${label}`, vi: (label) => `Bắt Đầu ${label}` },
@@ -63,6 +92,10 @@ const UI = {
   dimsSub: { en: "Each score is your average response on that dimension's items (1.0–7.0 scale; 4.0 is the midpoint used to sort patterns below).", vi: "Mỗi điểm số là mức trung bình các câu trả lời của bạn trên khía cạnh đó (thang 1,0–7,0; 4,0 là điểm giữa dùng để phân loại mô hình bên dưới)." },
   hStrengths: { en: "🌱 Relationship Strengths", vi: "🌱 Điểm Mạnh Trong Mối Quan Hệ" },
   hTips: { en: "💡 Growth Tips", vi: "💡 Gợi Ý Phát Triển" },
+  hAnxietyResources: { en: "🧘 Managing the Anxiety", vi: "🧘 Quản Lý Sự Lo Âu" },
+  hTechniques: { en: "Techniques to try today", vi: "Kỹ thuật để thử ngay hôm nay" },
+  hFrontlineTherapy: { en: "Approaches worth exploring", vi: "Các phương pháp đáng khám phá" },
+  hDeeperWork: { en: "If it traces back further", vi: "Nếu nó bắt nguồn từ trước đó" },
   hCutoff: { en: "ℹ️ How This Categorization Works", vi: "ℹ️ Cách Phân Loại Này Hoạt Động" },
   bigDisclaimer: {
     en: "Remember: this is a self-administered educational reflection tool, not a clinical or diagnostic assessment of attachment. Attachment patterns are shaped by experience and can shift over time, especially with secure relationships or professional support. If attachment concerns are affecting your relationships or mental health, please see a licensed therapist.",
@@ -136,9 +169,15 @@ function currentSections() {
   return VERSIONS[state.version || "full"].sections;
 }
 
+// Relationship-context options shown after version select, before items.
+// Doesn't affect scoring — only which instructional framing is shown on the
+// section-intro screens and, for "never", a caveat added to the report.
+const REL_CONTEXTS = [UI.relPartnered, UI.relSingleHistory, UI.relNever];
+
 const DEFAULT_STATE = () => ({
   version: null, // "quick" | "full"
-  screen: "welcome", // welcome | version | section-intro | question | results
+  relContext: null, // "partnered" | "single" | "never"
+  screen: "welcome", // welcome | version | relationship-context | section-intro | question | results
   sectionIndex: 0,
   questionIndex: 0,
   answers: { ecrr: {} }, // { itemId: 1-7 }
@@ -217,6 +256,7 @@ function render() {
   window.scrollTo(0, 0);
   if (state.screen === "welcome") return renderWelcome();
   if (state.screen === "version") return renderVersionSelect();
+  if (state.screen === "relationship-context") return renderRelationshipContext();
   if (state.screen === "section-intro") return renderSectionIntro();
   if (state.screen === "question") return renderQuestion();
   if (state.screen === "results") return renderResults();
@@ -267,8 +307,7 @@ function renderVersionSelect() {
   document.querySelectorAll(".age-card").forEach((btn) => {
     btn.onclick = () => {
       state.version = btn.dataset.key;
-      state.screen = "section-intro";
-      state.sectionIndex = 0;
+      state.screen = "relationship-context";
       render();
     };
   });
@@ -278,15 +317,49 @@ function renderVersionSelect() {
   };
 }
 
+function renderRelationshipContext() {
+  appEl.innerHTML = `
+    <div class="card center-card">
+      <h1>${L(UI.relContextQuestion)}</h1>
+      <p>${L(UI.relContextSub)}</p>
+      <div class="age-grid">
+        ${REL_CONTEXTS.map(
+          (opt) => `
+          <button class="age-card" data-key="${opt.key}">
+            <span class="age-label">${L(opt.label)}</span>
+            <span class="age-blurb">${L(opt.blurb)}</span>
+          </button>`
+        ).join("")}
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="backToVersionBtn">${L(UI.back)}</button>
+      </div>
+    </div>`;
+  document.querySelectorAll(".age-card").forEach((btn) => {
+    btn.onclick = () => {
+      state.relContext = btn.dataset.key;
+      state.screen = "section-intro";
+      state.sectionIndex = 0;
+      render();
+    };
+  });
+  document.getElementById("backToVersionBtn").onclick = () => {
+    state.screen = "version";
+    render();
+  };
+}
+
 function renderSectionIntro() {
   const sections = currentSections();
   const section = sections[state.sectionIndex];
   const label = L(section.label);
+  const contextNote = UI.sectionContextNote[state.relContext || "partnered"];
   appEl.innerHTML = `
     <div class="card center-card">
       <div class="badge">${L(UI.sectionOf)(state.sectionIndex + 1, sections.length)}</div>
       <h1>${section.emoji} ${label}</h1>
       <p>${L(section.blurb)}</p>
+      <p class="muted small"><em>${L(contextNote)}</em></p>
       <p class="muted">${L(UI.sectionCovers)(section.questions.length)}</p>
       <button class="btn btn-primary btn-lg" id="beginSectionBtn">${L(UI.beginSection)(label)}</button>
     </div>`;
@@ -380,6 +453,45 @@ function goBack() {
 }
 
 // ---------------------------------------------------------------------
+// Anxiety resources card — only rendered when report.anxietyResources is
+// non-null (Anxiety dimension High; see buildReport() in scoring.js).
+// Two tiers: front-line techniques/therapy, then a "deeper work" tier for
+// family-of-origin/trauma-rooted patterns (design doc: see scoring.js
+// ANXIETY_RESOURCES doc comment for the reasoning behind the split).
+// ---------------------------------------------------------------------
+function renderAnxietyResources(res) {
+  const techniqueItems = res.techniques.map((t) => `<li>${L(t)}</li>`).join("");
+
+  const modalityCard = (m) => `
+    <div class="quadrant-callout">
+      <h4>${L(m.name)}</h4>
+      <p>${L(m.whatItIs)}</p>
+      <p class="muted small"><em>${L(m.whyItFits)}</em></p>
+    </div>`;
+
+  const frontlineItems = res.frontlineTherapy.map(modalityCard).join("");
+  const deeperItems = res.deeperWorkTherapy.items.map(modalityCard).join("");
+
+  return `
+      <div class="card">
+        <h2>${L(UI.hAnxietyResources)}</h2>
+        <p class="muted">${L(res.intro)}</p>
+
+        <h3>${L(UI.hTechniques)}</h3>
+        <ol class="action-list">${techniqueItems}</ol>
+
+        <h3>${L(UI.hFrontlineTherapy)}</h3>
+        ${frontlineItems}
+
+        <h3>${L(UI.hDeeperWork)}</h3>
+        <p class="muted small">${L(res.deeperWorkTherapy.intro)}</p>
+        ${deeperItems}
+
+        <p class="muted small" style="margin-top:14px;">${L(res.disclaimer)}</p>
+      </div>`;
+}
+
+// ---------------------------------------------------------------------
 // Results
 // ---------------------------------------------------------------------
 function renderResults() {
@@ -432,11 +544,14 @@ function renderResults() {
         <ol class="action-list">${report.tips.map((t) => `<li>${L(t)}</li>`).join("")}</ol>
       </div>
 
+      ${report.anxietyResources ? renderAnxietyResources(report.anxietyResources) : ""}
+
       <div class="card">
         <h2>${L(UI.hCutoff)}</h2>
         <div class="quadrant-callout">
           <p>${report.cutoffNote}</p>
         </div>
+        ${state.relContext === "never" ? `<div class="quadrant-callout"><p>${L(UI.neverPartneredCaveat)}</p></div>` : ""}
       </div>
 
       <div class="card">

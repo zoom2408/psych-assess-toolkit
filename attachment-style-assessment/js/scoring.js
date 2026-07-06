@@ -154,6 +154,138 @@ const ECRR_PROFILES = {
   },
 };
 
+/* Conditional "Anxiety Resources" module — shown only when the Anxiety
+   dimension is High (i.e. quadrant is anxiousPreoccupied or fearfulAvoidant).
+   Distinct from ECRR_PROFILES[x].tips: those are relational reframes
+   specific to the quadrant; this is anxiety-management skills + named
+   therapy modalities, same regardless of which high-anxiety quadrant.
+
+   Two tiers, by design:
+     techniques      — concrete self-help skills, usable today
+     frontlineTherapy — modalities aimed at present-day anxiety symptoms
+                        and the relational pattern itself (EFT/CBT/ACT)
+     deeperWorkTherapy — modalities aimed at origin/root-cause work when
+                        the pattern traces to family-of-origin or trauma
+                        (Family Systems, IFS, EMDR, Art Therapy)
+   All entries are descriptive ("what it is / why it fits"), never
+   prescriptive ("you need X") — mirrors the non-diagnostic tone used
+   throughout this file and in app.js's bigDisclaimer. */
+const ANXIETY_RESOURCES = {
+  intro: {
+    en: "Your Anxiety score is on the higher end, which often comes with a specific kind of relationship worry. The tools and approaches below are general education, not a diagnosis or a personalized treatment plan — a licensed therapist is best placed to say what fits your situation.",
+    vi: "Điểm Lo Âu của bạn ở mức cao hơn, điều này thường đi kèm với một kiểu lo lắng cụ thể trong mối quan hệ. Các công cụ và phương pháp dưới đây mang tính giáo dục tổng quát, không phải chẩn đoán hay kế hoạch điều trị cá nhân hóa — một nhà trị liệu có chứng chỉ hành nghề là người phù hợp nhất để xác định điều gì phù hợp với bạn.",
+  },
+  techniques: [
+    {
+      en: "Grounding for the reply-gap: when you're waiting to hear back from someone, name 5 things you can see, 4 you can hear, 3 you can touch — this interrupts the spiral of imagining worst-case reasons for silence.",
+      vi: "Kỹ thuật neo giữ cho khoảng chờ phản hồi: khi đang chờ tin từ ai đó, hãy gọi tên 5 điều bạn thấy, 4 điều bạn nghe, 3 điều bạn chạm được — cách này ngắt mạch vòng xoáy tưởng tượng những lý do tồi tệ nhất cho sự im lặng.",
+    },
+    {
+      en: "A short reframe script: write down the anxious thought ('they haven't replied, they must be pulling away'), then write the most neutral, boring explanation that also fits the facts ('they might be busy'). Practicing the boring explanation weakens the automatic catastrophic one over time.",
+      vi: "Một kịch bản diễn giải lại ngắn: viết ra suy nghĩ lo âu ('họ chưa trả lời, chắc họ đang xa cách'), rồi viết ra lời giải thích trung lập, bình thường nhất cũng phù hợp với sự việc ('có thể họ đang bận'). Luyện tập lời giải thích bình thường này làm suy yếu dần phản xạ tự động thảm họa hóa.",
+    },
+    {
+      en: "Delay the urge to check in by a fixed interval (start with 10 minutes) before acting on it — anxiety spikes tend to peak and fall within minutes; the delay itself is often enough to see the urge pass.",
+      vi: "Trì hoãn thôi thúc muốn nhắn tin kiểm tra trong một khoảng thời gian cố định (bắt đầu với 10 phút) trước khi hành động — các cơn lo âu thường lên đến đỉnh điểm rồi giảm xuống trong vài phút; chỉ riêng việc trì hoãn thường đủ để thấy thôi thúc đó qua đi.",
+    },
+    {
+      en: "Build a short self-soothing list ahead of time (a call to a specific friend, a walk, a favorite song, box breathing) so you have a ready alternative to reassurance-seeking when anxiety spikes — deciding in the moment is much harder than deciding in advance.",
+      vi: "Chuẩn bị trước một danh sách tự trấn an ngắn (gọi cho một người bạn cụ thể, đi bộ, một bài hát yêu thích, thở hộp) để có sẵn một lựa chọn thay thế cho việc tìm kiếm sự trấn an khi lo âu tăng cao — quyết định ngay lúc đó khó hơn nhiều so với quyết định trước.",
+    },
+  ],
+  frontlineTherapy: [
+    {
+      name: { en: "Emotionally Focused Therapy (EFT)", vi: "Trị Liệu Tập Trung Cảm Xúc (EFT)" },
+      whatItIs: {
+        en: "A couples/individual therapy built directly on attachment theory, working with the pursue-withdraw cycle common in anxious-anxious or anxious-avoidant pairings.",
+        vi: "Một liệu pháp cho cặp đôi/cá nhân được xây dựng trực tiếp trên lý thuyết gắn bó, làm việc với vòng lặp truy đuổi-rút lui thường gặp ở các cặp lo âu-lo âu hoặc lo âu-né tránh.",
+      },
+      whyItFits: {
+        en: "Targets the relationship pattern itself, not just the worry in your head — useful if the anxiety mostly shows up inside a specific relationship.",
+        vi: "Nhắm vào chính mô hình mối quan hệ, không chỉ nỗi lo trong đầu bạn — hữu ích nếu sự lo âu chủ yếu xuất hiện trong một mối quan hệ cụ thể.",
+      },
+    },
+    {
+      name: { en: "Cognitive Behavioral Therapy (CBT)", vi: "Trị Liệu Nhận Thức Hành Vi (CBT)" },
+      whatItIs: {
+        en: "A structured, skills-based therapy that identifies and tests anxious thought patterns (catastrophizing, mind-reading) and builds behavioral alternatives to reassurance-seeking.",
+        vi: "Một liệu pháp có cấu trúc, dựa trên kỹ năng, giúp nhận diện và kiểm chứng các mô hình suy nghĩ lo âu (thảm họa hóa, đọc suy nghĩ người khác) và xây dựng các hành vi thay thế cho việc tìm kiếm sự trấn an.",
+      },
+      whyItFits: {
+        en: "Has the deepest research base of any therapy for anxiety broadly — a strong default choice if the anxiety itself (not just the relationship context) feels like the main problem.",
+        vi: "Có nền tảng nghiên cứu sâu rộng nhất trong các liệu pháp cho chứng lo âu nói chung — một lựa chọn mặc định vững chắc nếu bản thân sự lo âu (không chỉ bối cảnh mối quan hệ) là vấn đề chính.",
+      },
+    },
+    {
+      name: { en: "Acceptance and Commitment Therapy (ACT)", vi: "Trị Liệu Chấp Nhận và Cam Kết (ACT)" },
+      whatItIs: {
+        en: "A therapy focused on tolerating uncomfortable feelings and uncertainty without immediately acting to relieve them (like checking in for reassurance), rather than trying to eliminate the anxious feeling itself.",
+        vi: "Một liệu pháp tập trung vào việc chịu đựng những cảm giác khó chịu và sự bất định mà không lập tức hành động để giải tỏa chúng (như nhắn tin để được trấn an), thay vì cố loại bỏ hoàn toàn cảm giác lo âu.",
+      },
+      whyItFits: {
+        en: "Especially useful for the waiting-for-a-reply moments — builds tolerance for ambiguity itself rather than only reframing the thought.",
+        vi: "Đặc biệt hữu ích cho những khoảnh khắc chờ đợi phản hồi — xây dựng khả năng chịu đựng chính sự mơ hồ thay vì chỉ diễn giải lại suy nghĩ.",
+      },
+    },
+  ],
+  deeperWorkTherapy: {
+    intro: {
+      en: "If this pattern seems to trace back further than your current relationships — to childhood caregiving, family dynamics, or a specific past experience — these approaches work more directly with origins, not just present-day symptoms:",
+      vi: "Nếu mô hình này dường như bắt nguồn từ trước cả các mối quan hệ hiện tại — từ cách được chăm sóc thời thơ ấu, động lực gia đình, hoặc một trải nghiệm cụ thể trong quá khứ — những phương pháp sau đây làm việc trực tiếp hơn với gốc rễ, không chỉ triệu chứng hiện tại:",
+    },
+    items: [
+      {
+        name: { en: "Family Systems Therapy", vi: "Trị Liệu Hệ Thống Gia Đình" },
+        whatItIs: {
+          en: "Looks at attachment patterns as they formed within family-of-origin roles and dynamics (e.g. inconsistent caregiving, role reversal).",
+          vi: "Xem xét các mô hình gắn bó hình thành như thế nào trong vai trò và động lực gia đình gốc (ví dụ: sự chăm sóc không nhất quán, đảo ngược vai trò).",
+        },
+        whyItFits: {
+          en: "Most useful when the family relationship is still active and accessible — e.g. willing to do structured family-of-origin work or bring family members into sessions. Less of a fit for working through the past entirely on your own.",
+          vi: "Hữu ích nhất khi mối quan hệ gia đình vẫn đang hoạt động và có thể tiếp cận được — ví dụ: sẵn lòng làm việc có cấu trúc về gia đình gốc hoặc mời thành viên gia đình tham gia buổi trị liệu. Ít phù hợp hơn nếu muốn xử lý quá khứ hoàn toàn một mình.",
+        },
+      },
+      {
+        name: { en: "Internal Family Systems (IFS)", vi: "Hệ Thống Gia Đình Nội Tâm (IFS)" },
+        whatItIs: {
+          en: "An individual therapy that works with different internal 'parts' (e.g. the part that desperately wants closeness, the part that's terrified of rejection) rather than family members directly.",
+          vi: "Một liệu pháp cá nhân làm việc với các 'phần' nội tâm khác nhau (ví dụ: phần khao khát gần gũi tuyệt vọng, phần sợ hãi bị từ chối) thay vì trực tiếp với các thành viên gia đình.",
+        },
+        whyItFits: {
+          en: "A common choice for doing origin-focused work solo, without needing family involvement — directly addresses the internal push-pull that fearful-avoidant and anxious patterns often describe.",
+          vi: "Một lựa chọn phổ biến để tự làm việc tập trung vào gốc rễ, không cần sự tham gia của gia đình — trực tiếp giải quyết sự giằng co nội tâm mà các mô hình lo âu và lo âu-né tránh thường mô tả.",
+        },
+      },
+      {
+        name: { en: "EMDR (Eye Movement Desensitization and Reprocessing)", vi: "EMDR (Giải Mẫn Cảm và Tái Xử Lý Bằng Chuyển Động Mắt)" },
+        whatItIs: {
+          en: "A structured trauma-processing therapy that targets specific distressing memories, using guided eye movements or other bilateral stimulation to help the brain reprocess them.",
+          vi: "Một liệu pháp xử lý sang chấn có cấu trúc, nhắm vào các ký ức đau buồn cụ thể, sử dụng chuyển động mắt có hướng dẫn hoặc kích thích hai bên khác để giúp não bộ xử lý lại chúng.",
+        },
+        whyItFits: {
+          en: "Worth considering if there's a specific past event (not just a general pattern) that still feels emotionally 'live' when you think about it.",
+          vi: "Đáng cân nhắc nếu có một sự kiện cụ thể trong quá khứ (không chỉ là một mô hình chung chung) vẫn cảm thấy 'sống động' về mặt cảm xúc khi bạn nghĩ đến.",
+        },
+      },
+      {
+        name: { en: "Art Therapy", vi: "Trị Liệu Nghệ Thuật" },
+        whatItIs: {
+          en: "Uses drawing, painting, or other creative expression, guided by a trained therapist, to access and process experiences that are hard to put into words.",
+          vi: "Sử dụng vẽ, hội họa, hoặc các hình thức biểu đạt sáng tạo khác, dưới sự hướng dẫn của nhà trị liệu được đào tạo, để tiếp cận và xử lý những trải nghiệm khó diễn đạt bằng lời.",
+        },
+        whyItFits: {
+          en: "Early attachment experiences often predate verbal memory, so non-verbal approaches can surface material that talking alone misses. Best used as an adjunct alongside a primary talk therapy, not as a stand-alone treatment — its evidence base is more practice-based than the other approaches listed here.",
+          vi: "Những trải nghiệm gắn bó sớm thường có trước cả trí nhớ bằng lời, nên các phương pháp phi ngôn ngữ có thể khơi ra những điều mà chỉ trò chuyện thôi sẽ bỏ sót. Nên dùng như một liệu pháp bổ trợ đi kèm với trị liệu trò chuyện chính, không phải một liệu pháp độc lập — nền tảng bằng chứng của nó mang tính thực hành nhiều hơn so với các phương pháp khác được liệt kê ở đây.",
+        },
+      },
+    ],
+  },
+  disclaimer: {
+    en: "None of this is a diagnosis or a prescribed treatment plan. Modality fit depends on the person, the therapist, and the specific history involved — a licensed mental health professional is the right person to help choose.",
+    vi: "Không có nội dung nào ở đây là chẩn đoán hay kế hoạch điều trị được kê đơn. Sự phù hợp của phương pháp phụ thuộc vào từng người, nhà trị liệu, và lịch sử cụ thể liên quan — một chuyên gia sức khỏe tâm thần có chứng chỉ hành nghề là người phù hợp để giúp bạn lựa chọn.",
+  },
+};
+
 /* ---------------------------------------------------------------------
    Scoring functions
 --------------------------------------------------------------------- */
@@ -240,6 +372,10 @@ function buildReport(result) {
     };
   });
 
+  // Shown whenever Anxiety is High, regardless of which High-Anxiety quadrant
+  // (anxiousPreoccupied or fearfulAvoidant) — see ANXIETY_RESOURCES doc comment.
+  const anxietyIsHigh = result.anxiety.mean > ECRR_MIDPOINT;
+
   return {
     profile,
     headline,
@@ -247,6 +383,7 @@ function buildReport(result) {
     cutoffNote: L(_AT.cutoffNote),
     strengths: profile.strengths,
     tips: profile.tips,
+    anxietyResources: anxietyIsHigh ? ANXIETY_RESOURCES : null,
     lowDataWarning: result.missingCount > 0,
   };
 }
